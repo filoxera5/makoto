@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘 뉴스 - 뉴스 랭킹</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>오늘 뉴스</h1>
+        <p>유튜브 뉴스 영상의 인기를 한눈에!</p>
+    </header>
+
+    <main>
+        <section class="controls">
+            <input type="date" id="datePicker">
+
+            <select id="periodSelect">
+                <option value="day">일간</option>
+                <option value="week">주간 (7일)</option>
+                <option value="month">월간 (30일)</option>
+            </select>
+
+            <button id="searchBtn">뉴스 조회</button>
+
+            <select id="sortSelect">
+                <option value="views">조회수순</option>
+                <option value="comments">댓글순</option>
+                <option value="likes">좋아요순</option>
+            </select>
+        </section>
+
+        <div id="resultMeta" aria-live="polite"></div>
+
+        <section id="newsList">
+            <p>기간과 날짜를 선택하고 뉴스 조회를 눌러주세요.</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

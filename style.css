@@ -1,0 +1,243 @@
+
+/* 기본 설정 */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Pretendard", "Malgun Gothic", sans-serif;
+    background-color: #f4f6fa;
+    color: #202938;
+}
+
+/* 상단 헤더 */
+header {
+    background: linear-gradient(135deg, #142b50, #2856a0);
+    color: white;
+    text-align: center;
+    padding: 55px 20px;
+}
+
+header h1 {
+    font-size: 38px;
+    font-weight: 800;
+    margin: 0 0 12px;
+}
+
+header p {
+    font-size: 16px;
+    color: #d7e5ff;
+    margin: 0;
+}
+
+/* 메인 영역 */
+main {
+    max-width: 1050px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+/* 검색 및 정렬 영역 */
+.controls {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+/* 날짜 선택 및 정렬 */
+input, select {
+    padding: 13px 16px;
+    border: 1px solid #d9e0ea;
+    border-radius: 9px;
+    font-size: 15px;
+    background: white;
+    color: #202938;
+}
+
+/* 뉴스 조회 버튼 */
+button {
+    background: #2856a0;
+    color: white;
+    padding: 13px 24px;
+    border: none;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #173d7c;
+}
+
+/* 뉴스 표시 영역 */
+#newsList {
+    margin-top: 25px;
+    display: grid;
+    gap: 18px;
+}
+
+#newsList > p {
+    background: white;
+    padding: 65px 20px;
+    border-radius: 16px;
+    text-align: center;
+    color: #788494;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+
+/* 추후 추가할 뉴스 카드 */
+.news-card {
+    background: white;
+    border-radius: 14px;
+    padding: 18px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.news-card:hover {
+    transform: translateY(-3px);
+}
+
+.news-card img {
+    width: 220px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.news-card h3 {
+    margin: 0 0 12px;
+    font-size: 18px;
+}
+
+.news-card p {
+    margin: 6px 0;
+    font-size: 14px;
+    color: #667085;
+}
+
+/* 모바일 화면 대응 */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 29px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    input, select, button {
+        width: 100%;
+    }
+
+    .news-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .news-card img {
+        width: 100%;
+    }
+}
+
+/* API 연결 전 테스트용 썸네일 */
+.demo-thumb {
+    width: 220px;
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #183153, #3673c9);
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.news-info {
+    flex: 1;
+}
+
+.news-info small {
+    color: #9aa4b2;
+}
+
+@media (max-width: 600px) {
+    .demo-thumb {
+        width: 100%;
+    }
+}
+
+/* 클릭 가능한 뉴스 카드 */
+a.news-card {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+a.news-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+a.news-card:hover h3 {
+    color: #2856a0;
+}
+
+a.news-card:focus-visible {
+    outline: 3px solid #2856a0;
+    outline-offset: 3px;
+}
+
+.news-info small {
+    display: inline-block;
+    margin-top: 10px;
+    color: #2856a0;
+    font-weight: 600;
+}
+
+/* 기간별 뉴스 조회 결과 안내 */
+#resultMeta {
+    margin-top: 24px;
+    padding: 0 4px;
+    font-size: 14px;
+    color: #56657b;
+    line-height: 1.7;
+}
+
+#resultMeta:empty {
+    display: none;
+}
+
+/* 결과 안내와 뉴스 목록 간격 */
+#resultMeta:not(:empty) + #newsList {
+    margin-top: 14px;
+}
+
+/* 카드 제목이 너무 길어지지 않도록 제한 */
+.news-info h3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+}
+
+/* 로딩 중 버튼 */
+button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
